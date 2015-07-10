@@ -14,11 +14,8 @@ var maintenance_mode = function(req, res) {
   res.send('Sorry, maintenance mode');
 };
 
-http.createServer(function(req, res) {
+var handler = normal_mode;
 
-  res.writeHead(200);
-  res.end('Hello Shenzhen!');
-
-}).listen(PORT, function() {
+http.createServer(handler).listen(PORT, function() {
   console.log('Listening on port: %d', PORT);
 });
