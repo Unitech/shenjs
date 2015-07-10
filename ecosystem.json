@@ -1,0 +1,21 @@
+{
+  apps : [{
+    name      : "API v1",
+    script    : "app.js",
+    exec_mode : 'cluster',
+    instances : 2,
+    watch     : true
+  }],
+
+  // Deploy part
+  deploy : {
+    production : {
+      user : "ubuntu",
+      host : "162.243.81.170",
+      ref  : "origin/master",
+      repo : "git@github.com:repo.git",
+      path : "/var/www/production",
+      "post-deploy" : "pm2 startOrRestart ecosystem.json --env production"
+    }
+  }
+}
